@@ -4,6 +4,7 @@ export default function ProductList() {
   return <div>product list</div>;
 }
 
+//importing product files from products.json file
 // function ProductItem() {
 //   return (
 //     <div className="p-4 md:w-1/3">
