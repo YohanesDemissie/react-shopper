@@ -1,30 +1,21 @@
 import React from "react";
 import axios from 'axios';
-import { Link, BrowserRouter as Router, } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSpinner from './LoadingSpinner';
 import formatProductPrice from '../utils/formatProductPrice';
 
 export default function ProductList() {
-  const { data: products, isLoading } = useQuery('Products', () => axios('/api/products').then((res) => res.data.products));
+  const { data: products, isLoading } = useQuery("Products", () => axios("/api/products").then((res) => res.data.products));
 
   //throw some animation here below for the return
-  if(isLoading) return <LoadingSpinner />
+  if(isLoading) return <LoadingSpinner />;
 
-  // REVIEW PART 5 TO SEE WHY ABOVE IS BETTER THAN BELOW COMMENTED OUT
-  // const [products, setProducts] = React.useState([])
-  // React.useEffect(() => {
-  //   axios.get('/api/products')
-  //   .then(res => res.data.products)
-  //   .then(products => setProducts(products))
-  // }, []);
-
-  return products.map(product => (
+  return products.map((product) => (
     <ProductItem key={product.id} product={product} />
   ))
 }
 
-//importing product files from products.json file
 function ProductItem({ product }) {
   const price = formatProductPrice(product)
   return (
