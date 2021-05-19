@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient} from 'react-query'
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Result from './pages/Result';
+import Navbar from './components/Navbar';
 //stripe api below
 import { loadStripe} from '@stripe/stripe-js';
 import { CartProvider } from "use-shopping-cart";
@@ -22,6 +23,7 @@ function App() {
         currency="USD"
       >
         <BrowserRouter>
+          <Navbar />
           <Toaster position="bottom-center" />
           <Switch>
             <Route exact path="/" component={Home} />
