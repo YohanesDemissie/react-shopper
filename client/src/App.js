@@ -6,12 +6,12 @@ import Product from './pages/Product';
 import Result from './pages/Result';
 import Navbar from './components/Navbar';
 //stripe api below
-import { loadStripe} from '@stripe/stripe-js';
-import { CartProvider } from "use-shopping-cart";
+import { loadStripe } from '@stripe/stripe-js';
+import { CartProvider } from 'use-shopping-cart';
 import {Toaster} from 'react-hot-toast';
 
 const queryClient = new QueryClient();
-// const envKey = process.env.PUBLISHABLE_KEY;
+
 const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY);
 
 function App() {

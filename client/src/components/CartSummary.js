@@ -1,5 +1,4 @@
 import React from "react";
-import toast from "react-hot-toast";
 import { useShoppingCart } from "use-shopping-cart";
 import CartModal from "./CartModal";
 import { CartIcon } from "./Icons";

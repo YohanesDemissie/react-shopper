@@ -1,0 +1,8 @@
+{
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/fcf262e6-845e-4ffb-85ab-20ba594094fd/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/react-shopper",
+  "appService.deploySubpath": "."
+}

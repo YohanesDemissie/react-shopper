@@ -1,15 +1,15 @@
-// @ts-nocheck
 import React from "react";
 import Modal from "react-modal";
 import { useShoppingCart } from "use-shopping-cart";
 import CartItem from './CartItem';
+import useCheckout from '../utils/useCheckout';
 
 Modal.setAppElement("#root");
 
 export default function CartModal({ isOpen, toggleModal}) {
   const { cartCount, formattedTotalPrice, cartDetails } = useShoppingCart();
-
-  const cartItems = Object.keys(cartDetails).map(key => cartDetails[key])
+  const handleCheckout = useCheckout();
+  const cartItems = Object.keys(cartDetails).map((key) => cartDetails[key]);
   return (
     <Modal isOpen={isOpen} onRequestClose={toggleModal} contentLabel="Cart Modal" closeTimeoutMS={500}>
       <div className="flex items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800">
@@ -21,13 +21,14 @@ export default function CartModal({ isOpen, toggleModal}) {
               </div>
             </div>
             <hr />
-            {cartItems.map(cartItem => (
+            {cartItems.map((cartItem) => (
               <CartItem key={cartItem.id} cartItem={cartItem}/>
             ))}
             <div className="ml-auto mt-4">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 style={{ marginRight: 4 }}
+                onClick={handleCheckout}
               >
                 Checkout Now
               </button>
