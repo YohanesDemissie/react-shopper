@@ -1,36 +1,30 @@
-// @ts-nocheck
-import React from "react";
 import axios from "axios";
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import LoadingSpinner from '../components/LoadingSpinner';
-import formatProductPrice from '../utils/formatProductPrice';
-import AddToCart from '../components/AddToCart';
-import RemoveFromCart from '../components/RemoveFromCart';
+import LoadingSpinner from "../components/LoadingSpinner";
+import formatProductPrice from "../utils/formatProductPrice";
+import React from "react";
+import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
+import AddToCart from "../components/AddToCart";
+import RemoveFromCart from "../components/RemoveFromCart";
+
 
 export default function Product() {
   const { productId } = useParams();
-  const { data: product, isLoading, isError, error } = useQuery(["Product", productId], () => axios(`/api/products/${productId}`).then((res) => res.data.product));
+  const { data: product, isLoading, isError, error } = useQuery(["Product", productId], () => axios(`/api/products/${productId}`).then(res => res.data.product))
 
-  if (isLoading) return <LoadingSpinner />;
-  if (isError) {
-    return (
-      <div className="text-red-500 font-bold text-center mx-auto">
-        Oops! {error.message}
-      </div>
-    );
-  };
-
+  if (isLoading) return <LoadingSpinner />
+  if (isError) return <div className="text-red-500 font-bold text-center mx-auto">Oops! {error.message}</div>
 
   const price = formatProductPrice(product)
+
   return (
     <section className="text-gray-400 bg-gray-900 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt={product.name}
-            src={product.image}
             className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+            src={product.image}
           />
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
@@ -45,8 +39,8 @@ export default function Product() {
               <span className="title-font font-medium text-2xl text-white">
                 {price}
               </span>
-              <AddToCart product={product}/>
-              <RemoveFromCart product={product}/>
+              <AddToCart product={product} />
+              <RemoveFromCart product={product} />
             </div>
           </div>
         </div>

@@ -1,18 +1,17 @@
+import Home from "./pages/Home";
+import Product from "./pages/Product";
+import Result from "./pages/Result";
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { QueryClientProvider, QueryClient} from 'react-query'
-import Home from './pages/Home';
-import Product from './pages/Product';
-import Result from './pages/Result';
-import Navbar from './components/Navbar';
-//stripe api below
-import { loadStripe } from '@stripe/stripe-js';
-import { CartProvider } from 'use-shopping-cart';
-import {Toaster} from 'react-hot-toast';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { QueryClientProvider, QueryClient } from 'react-query'
+import { loadStripe } from '@stripe/stripe-js'
+import { CartProvider } from "use-shopping-cart";
+import { Toaster } from 'react-hot-toast'
+import Navbar from "./components/Navbar";
 
 const queryClient = new QueryClient();
 
-const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY);
+const stripePromise = loadStripe('pk_test_51Iss8IHdaViwihGieJyHSYwg4cDioAaW1Q0CXJW2JaIEOHcnNH9fVM9WsyeahlyQxC0LhLpXClDtIX6Q0Sz4icsI00zcwvyTFM')
 
 function App() {
   return (
@@ -27,11 +26,11 @@ function App() {
           <Toaster position="bottom-center" />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path ="/result" component={Result} />
+            <Route path="/result" component={Result} />
             <Route path="/:productId" component={Product} />
           </Switch>
         </BrowserRouter>
-        </CartProvider>
+      </CartProvider>
     </QueryClientProvider>
   )
 }
